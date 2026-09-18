@@ -6,9 +6,19 @@
     <title>Algoscope</title>
   </head>
   <body>
-    <h1>Algoscope — Bubble Sort</h1>
+    <h1>Algoscope</h1>
     <canvas id="canvas" width="800" height="400"></canvas>
     <div id="controls">
+      <label for="algorithm">
+        Algorithm
+        <select id="algorithm">
+          <option value="bubble">Bubble Sort</option>
+          <option value="insertion">Insertion Sort</option>
+          <option value="selection">Selection Sort</option>
+          <option value="quick">Quick Sort</option>
+          <option value="merge">Merge Sort</option>
+        </select>
+      </label>
       <button id="play-pause" type="button">Play</button>
       <button id="step" type="button">Step</button>
       <button id="reset" type="button">Reset</button>

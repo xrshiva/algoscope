@@ -101,6 +101,9 @@ export class Player {
         this.array[event.j] = tmp;
         break;
       }
+      case 'overwrite':
+        this.array[event.index] = event.value;
+        break;
       case 'markSorted':
         this.sortedIndices.add(event.index);
         break;

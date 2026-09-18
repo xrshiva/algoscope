@@ -6,9 +6,9 @@ A web-based algorithm visualizer. Watch algorithms run step by step instead of j
 
 ## How it works
 
-Algorithms don't return results — they emit a chronological list of typed events describing every step (`compare`, `swap`, `markSorted`). A player steps through that event list on a timer, and a canvas renderer paints bars from the current state. The algorithm code never touches rendering, timing, or the DOM — it's a pure function `(input: number[]) => AlgoEvent[]`.
+Algorithms don't return results — they emit a chronological list of typed events describing every step (`compare`, `swap`, `overwrite`, `markSorted`). A player steps through that event list on a timer, and a canvas renderer paints bars from the current state. The algorithm code never touches rendering, timing, or the DOM — it's a pure function `(input: number[]) => AlgoEvent[]`.
 
-Currently implemented: **bubble sort**.
+Currently implemented: **bubble, insertion, selection, quick, and merge sort** — pick one from the dropdown in the UI. You can also type your own array (e.g. `5, 3, 8, 1`) and run any algorithm on exactly that input.
 
 ## Stack
 

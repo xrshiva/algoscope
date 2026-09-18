@@ -4,6 +4,7 @@ import type { PlayerState } from '../player/Player';
 const COLOR_DEFAULT = '#94a3b8';
 const COLOR_COMPARE = '#f59e0b';
 const COLOR_SWAP = '#ef4444';
+const COLOR_OVERWRITE = '#3b82f6';
 const COLOR_SORTED = '#22c55e';
 const BAR_GAP = 2;
 const TOP_MARGIN = 20;
@@ -42,9 +43,9 @@ export class CanvasRenderer {
 }
 
 function highlightedIndices(event: AlgoEvent | null): number[] {
-  if (event && (event.type === 'compare' || event.type === 'swap')) {
-    return [event.i, event.j];
-  }
+  if (!event) return [];
+  if (event.type === 'compare' || event.type === 'swap') return [event.i, event.j];
+  if (event.type === 'overwrite') return [event.index];
   return [];
 }
 
@@ -56,7 +57,9 @@ function colorFor(
 ): string {
   if (sortedIndices.has(index)) return COLOR_SORTED;
   if (highlighted.includes(index)) {
-    return event?.type === 'swap' ? COLOR_SWAP : COLOR_COMPARE;
+    if (event?.type === 'swap') return COLOR_SWAP;
+    if (event?.type === 'overwrite') return COLOR_OVERWRITE;
+    return COLOR_COMPARE;
   }
   return COLOR_DEFAULT;
 }
