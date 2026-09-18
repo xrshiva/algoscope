@@ -7,35 +7,73 @@
   </head>
   <body>
     <h1>Algoscope</h1>
-    <canvas id="canvas" width="800" height="400"></canvas>
-    <div id="controls">
-      <label for="algorithm">
-        Algorithm
-        <select id="algorithm">
-          <option value="bubble">Bubble Sort</option>
-          <option value="insertion">Insertion Sort</option>
-          <option value="selection">Selection Sort</option>
-          <option value="quick">Quick Sort</option>
-          <option value="merge">Merge Sort</option>
-        </select>
-      </label>
-      <button id="play-pause" type="button">Play</button>
-      <button id="step" type="button">Step</button>
-      <button id="reset" type="button">Reset</button>
-      <button id="new-array" type="button">New Array</button>
-      <label for="speed">
-        Speed (delay ms)
-        <input id="speed" type="range" min="50" max="1000" step="50" value="300" />
-      </label>
+    <div id="tabs">
+      <button id="tab-sorting" type="button" class="tab active">Sorting</button>
+      <button id="tab-pathfinding" type="button" class="tab">Pathfinding</button>
     </div>
-    <div id="custom-row">
-      <label for="custom-array">
-        Custom array
-        <input id="custom-array" type="text" placeholder="e.g. 5, 3, 8, 1" />
-      </label>
-      <button id="run-custom" type="button">Run</button>
-      <span id="custom-error" role="alert"></span>
-    </div>
+
+    <section id="sorting-view">
+      <canvas id="canvas" width="800" height="400"></canvas>
+      <div id="controls">
+        <label for="algorithm">
+          Algorithm
+          <select id="algorithm">
+            <option value="bubble">Bubble Sort</option>
+            <option value="insertion">Insertion Sort</option>
+            <option value="selection">Selection Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="merge">Merge Sort</option>
+          </select>
+        </label>
+        <button id="play-pause" type="button">Play</button>
+        <button id="step" type="button">Step</button>
+        <button id="reset" type="button">Reset</button>
+        <button id="new-array" type="button">New Array</button>
+        <label for="speed">
+          Speed (delay ms)
+          <input id="speed" type="range" min="50" max="1000" step="50" value="300" />
+        </label>
+      </div>
+      <div id="custom-row">
+        <label for="custom-array">
+          Custom array
+          <input id="custom-array" type="text" placeholder="e.g. 5, 3, 8, 1" />
+        </label>
+        <button id="run-custom" type="button">Run</button>
+        <span id="custom-error" role="alert"></span>
+      </div>
+    </section>
+
+    <section id="pathfinding-view" hidden>
+      <canvas id="path-canvas" width="800" height="400"></canvas>
+      <div id="path-mode-row">
+        <span>Draw:</span>
+        <button id="mode-wall" type="button" class="mode-button active">Wall</button>
+        <button id="mode-start" type="button" class="mode-button">Start</button>
+        <button id="mode-end" type="button" class="mode-button">End</button>
+        <button id="clear-walls" type="button">Clear Walls</button>
+      </div>
+      <div id="path-controls">
+        <label for="path-algorithm">
+          Algorithm
+          <select id="path-algorithm">
+            <option value="bfs">BFS</option>
+            <option value="dfs">DFS</option>
+            <option value="dijkstra">Dijkstra</option>
+            <option value="astar">A*</option>
+          </select>
+        </label>
+        <button id="find-path" type="button">Find Path</button>
+        <button id="path-play-pause" type="button">Play</button>
+        <button id="path-step" type="button">Step</button>
+        <button id="path-reset" type="button">Reset</button>
+        <label for="path-speed">
+          Speed (delay ms)
+          <input id="path-speed" type="range" min="10" max="200" step="10" value="40" />
+        </label>
+      </div>
+    </section>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

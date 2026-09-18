@@ -1,14 +1,16 @@
 # Algoscope
 
-A web-based algorithm visualizer. Watch algorithms run step by step instead of just reading code.
+A web-based algorithm visualizer. Watch algorithms run step by step instead of just reading code. Two visualizers, one page, a tab switcher between them.
 
 **Live demo:** https://xrshiva.github.io/algoscope/
 
 ## How it works
 
-Algorithms don't return results — they emit a chronological list of typed events describing every step (`compare`, `swap`, `overwrite`, `markSorted`). A player steps through that event list on a timer, and a canvas renderer paints bars from the current state. The algorithm code never touches rendering, timing, or the DOM — it's a pure function `(input: number[]) => AlgoEvent[]`.
+Algorithms don't return results — they emit a chronological list of typed events describing every step. A player steps through that event list on a timer, and a canvas renderer paints the current state. The algorithm code never touches rendering, timing, or the DOM.
 
-Currently implemented: **bubble, insertion, selection, quick, and merge sort** — pick one from the dropdown in the UI. You can also type your own array (e.g. `5, 3, 8, 1`) and run any algorithm on exactly that input.
+**Sorting** — pure functions `(input: number[]) => AlgoEvent[]` (`compare`, `swap`, `overwrite`, `markSorted`), drawn as bars. Implemented: **bubble, insertion, selection, quick, and merge sort** — pick one from the dropdown. You can also type your own array (e.g. `5, 3, 8, 1`) and run any algorithm on exactly that input.
+
+**Pathfinding** — pure functions `(grid, start, end) => PathEvent[]` (`frontier`, `visit`, `path`), drawn as a grid. Implemented: **BFS, DFS, Dijkstra, and A\*** on a 4-directional grid. Draw walls by dragging, place start/end, pick an algorithm, and click Find Path.
 
 ## Stack
 
@@ -32,11 +34,12 @@ npm run build  # typecheck + production build
 
 ```
 src/
-├── algorithms/   # pure functions producing AlgoEvent[] — no DOM, no rendering
-├── player/       # steps through events on a timer (play/pause/step/reset/speed)
-├── render/       # CanvasRenderer — paints bars from a state snapshot
-├── ui/           # wires DOM controls to the Player
-└── main.ts       # wires everything together
+├── algorithms/   # sorting: pure functions producing AlgoEvent[] — no DOM, no rendering
+├── player/       # sorting: steps through events on a timer (play/pause/step/reset/speed)
+├── render/       # sorting: CanvasRenderer — paints bars from a state snapshot
+├── ui/           # sorting: wires DOM controls to the Player
+├── pathfinding/  # pathfinding: algorithms, PathPlayer, GridRenderer, and controller.ts (its own DOM wiring)
+└── main.ts       # bootstraps the tab switcher, sorting, and pathfinding
 ```
 
 See `CLAUDE.md` for the full module-boundary rules.

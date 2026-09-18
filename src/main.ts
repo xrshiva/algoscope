@@ -8,6 +8,7 @@ import type { SortAlgorithm } from './algorithms/types';
 import { Player } from './player/Player';
 import { CanvasRenderer } from './render/CanvasRenderer';
 import { bindControls, type ControlElements } from './ui/controls';
+import { initPathfinding } from './pathfinding/controller';
 
 const ARRAY_SIZE = 20;
 const MIN_VALUE = 5;
@@ -73,3 +74,27 @@ player.onChange((state) => renderer.draw(state));
 bindControls(controlElements, player, startNewRun, runOn);
 
 startNewRun();
+
+function initTabs(): void {
+  const sortingTab = requireElement<HTMLButtonElement>('#tab-sorting');
+  const pathfindingTab = requireElement<HTMLButtonElement>('#tab-pathfinding');
+  const sortingView = requireElement<HTMLElement>('#sorting-view');
+  const pathfindingView = requireElement<HTMLElement>('#pathfinding-view');
+
+  sortingTab.addEventListener('click', () => {
+    sortingView.hidden = false;
+    pathfindingView.hidden = true;
+    sortingTab.classList.add('active');
+    pathfindingTab.classList.remove('active');
+  });
+
+  pathfindingTab.addEventListener('click', () => {
+    sortingView.hidden = true;
+    pathfindingView.hidden = false;
+    sortingTab.classList.remove('active');
+    pathfindingTab.classList.add('active');
+  });
+}
+
+initTabs();
+initPathfinding();
