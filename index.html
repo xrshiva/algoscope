@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algoscope</title>
+  </head>
+  <body>
+    <h1>Algoscope — Bubble Sort</h1>
+    <canvas id="canvas" width="800" height="400"></canvas>
+    <div id="controls">
+      <button id="play-pause" type="button">Play</button>
+      <button id="step" type="button">Step</button>
+      <button id="reset" type="button">Reset</button>
+      <button id="new-array" type="button">New Array</button>
+      <label for="speed">
+        Speed (delay ms)
+        <input id="speed" type="range" min="50" max="1000" step="50" value="300" />
+      </label>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
