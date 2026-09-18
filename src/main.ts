@@ -31,15 +31,20 @@ const controlElements: ControlElements = {
   resetButton: requireElement('#reset'),
   speedSlider: requireElement('#speed'),
   newArrayButton: requireElement('#new-array'),
+  customInput: requireElement('#custom-array'),
+  runCustomButton: requireElement('#run-custom'),
+  customError: requireElement('#custom-error'),
 };
 
+function runOn(array: number[]): void {
+  player.load(array, bubbleSort(array));
+}
+
 function startNewRun(): void {
-  const array = randomArray(ARRAY_SIZE);
-  const events = bubbleSort(array);
-  player.load(array, events);
+  runOn(randomArray(ARRAY_SIZE));
 }
 
 player.onChange((state) => renderer.draw(state));
-bindControls(controlElements, player, startNewRun);
+bindControls(controlElements, player, startNewRun, runOn);
 
 startNewRun();
